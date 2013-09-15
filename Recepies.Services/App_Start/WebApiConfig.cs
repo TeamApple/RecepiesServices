@@ -16,6 +16,16 @@ namespace Recepies.Services
             );
 
             config.Routes.MapHttpRoute(
+                name: "UserLoginApi",
+                routeTemplate: "api/auth/token",
+                defaults: new { controller = "users", action = "token" });
+
+            config.Routes.MapHttpRoute(
+                name: "UserApi",
+                routeTemplate: "api/users/{action}",
+                defaults: new { controller = "users" });
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
