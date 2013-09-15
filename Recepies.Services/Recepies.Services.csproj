@@ -173,6 +173,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="Models\MemoryRepository.cs" />
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\EfRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
