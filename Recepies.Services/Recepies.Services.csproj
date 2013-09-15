@@ -168,14 +168,18 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginResponseModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="Models\MemoryRepository.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\EfRepository.cs" />
+    <Compile Include="Models\RegisterUserResponseModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
