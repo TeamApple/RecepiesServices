@@ -33,7 +33,7 @@ namespace Recepies.Services.Controllers
                     Text = model.Text,
                     Recepy = recipe,
                     User = meUser
-                }
+                };
                 context.Comments.Add(commentEntity);                    
                 context.SaveChanges();
 
