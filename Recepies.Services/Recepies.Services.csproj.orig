@@ -166,19 +166,27 @@
     <Compile Include="AuthenticationHeaders\HeaderValueProvider.cs" />
     <Compile Include="AuthenticationHeaders\HeaderValueProviderFactory.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
 <<<<<<< HEAD
-    <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\CreatedComment.cs" />
 =======
+    <Compile Include="Models\RecipeCreatedModel.cs" />
+    <Compile Include="Models\LoginResponseModel.cs" />
+>>>>>>> e53b686fe98d9fa4650511c7ed9c0778425a75ac
+    <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="Models\MemoryRepository.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\EfRepository.cs" />
->>>>>>> 16a1c53207ca4a1d59288d352b4e0a05db5104a5
+    <Compile Include="Models\RegisterUserResponseModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
