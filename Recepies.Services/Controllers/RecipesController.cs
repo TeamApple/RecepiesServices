@@ -52,7 +52,7 @@ namespace Recepies.Services.Controllers
 
         [HttpPut]
         [ActionName("edit")]
-        public HttpResponseMessage EditRecipe(int id, RecipeModel model,
+        public HttpResponseMessage EditRecipe([FromUri]int id, RecipeModel model,
             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
             string accessToken)
         {
@@ -107,6 +107,26 @@ namespace Recepies.Services.Controllers
                     });
 
                 return recipeModels;
+            });
+        }
+
+        [HttpGet]
+        public RecipeModel Get([FromUri]int id)
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var context = new RecipeContext();
+
+                var recipe = this.GetRecipeById(id, context);
+
+                var recipeModel = new RecipeModel() {
+                    Id = recipe.RecepieId,
+                    Name = recipe.Name,
+                    CookingSteps = recipe.CookingSteps,
+                    Products = recipe.Products,
+                    ImagePath = recipe.ImagePath
+                };
+                return recipeModel;
             });
         }
 

@@ -11,8 +11,8 @@ namespace Recepies.Services
         {
             config.Routes.MapHttpRoute(
                 name: "RecipeApi",
-                routeTemplate: "api/recipe/{action}",
-                defaults: new { controller = "recipes" }
+                routeTemplate: "api/recipe/{id}/{action}",
+                defaults: new { controller = "recipes", id = RouteParameter.Optional, action = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
