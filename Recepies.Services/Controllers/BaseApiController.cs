@@ -29,5 +29,15 @@ namespace Recepies.Services.Controllers
                 throw new HttpResponseException(errResponse);
             }
         }
+
+        protected User GetUserByAccessToken(string accessToken, TasksManagerDbContext context)
+        {
+            var user = context.Users.FirstOrDefault(usr => usr.AccessToken == accessToken);
+            if (user == null)
+            {
+                throw new InvalidOperationException("Invalid user credentials");
+            }
+            return user;
+        }
     }
 }
