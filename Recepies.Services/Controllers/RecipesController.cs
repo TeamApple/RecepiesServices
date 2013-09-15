@@ -85,7 +85,7 @@ namespace Recepies.Services.Controllers
         }
 
         [HttpGet]
-        [ActionName("all")]
+        [ActionName("allbyuser")]
         public IQueryable<RecipeModel> GetAll(
             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
             string accessToken)
