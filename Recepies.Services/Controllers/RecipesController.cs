@@ -110,6 +110,30 @@ namespace Recepies.Services.Controllers
             });
         }
 
+        [HttpGet]
+        [ActionName("all")]
+        public IQueryable<RecipeModel> GetAll()
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var context = new RecipeContext();
+
+                var recipeModels = context.Recepies
+                    .AsQueryable()
+                    .OrderByDescending(rec => rec.Name)
+                    .Select(rec => new RecipeModel()
+                    {
+                        Id = rec.RecepieId,
+                        Name = rec.Name,
+                        CookingSteps = rec.CookingSteps,
+                        Products = rec.Products,
+                        ImagePath = rec.ImagePath
+                    });
+
+                return recipeModels;
+            });
+        }
+
         private void ValidateRecipe(RecipeModel model)
         {
             if (String.IsNullOrEmpty(model.Name) ||
