@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RecepiesDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RecepiesDbModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="RecepiesDbModel.Store.Comments" store:Type="Tables" store:Schema="dbo" store:Name="Comments">
+            <DefiningQuery>SELECT 
+      [Comments].[CommentId] AS [CommentId], 
+      [Comments].[Text] AS [Text], 
+      [Comments].[UserId] AS [UserId], 
+      [Comments].[RecepieId] AS [RecepieId]
+      FROM [dbo].[Comments] AS [Comments]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Recepies" EntityType="RecepiesDbModel.Store.Recepies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="RecepiesDbModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Comments_Recepies" Association="RecepiesDbModel.Store.FK_Comments_Recepies">
+            <End Role="Recepies" EntitySet="Recepies" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="RecepiesDbModel.Store.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recepies_Users" Association="RecepiesDbModel.Store.FK_Recepies_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recepies" EntitySet="Recepies" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'RecepiesDb.dbo.Comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+            <PropertyRef Name="Text" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RecepieId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RecepieId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recepies">
+          <Key>
+            <PropertyRef Name="RecepieId" />
+          </Key>
+          <Property Name="RecepieId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Products" Type="nvarchar" Nullable="false" MaxLength="450" />
+          <Property Name="CookingSteps" Type="ntext" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AuthenticationCode" Type="nchar" Nullable="false" MaxLength="40" />
+          <Property Name="AccessToken" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Comments_Recepies">
+          <End Role="Recepies" Type="RecepiesDbModel.Store.Recepies" Multiplicity="1" />
+          <End Role="Comments" Type="RecepiesDbModel.Store.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recepies">
+              <PropertyRef Name="RecepieId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="RecepieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="RecepiesDbModel.Store.Users" Multiplicity="1" />
+          <End Role="Comments" Type="RecepiesDbModel.Store.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recepies_Users">
+          <End Role="Users" Type="RecepiesDbModel.Store.Users" Multiplicity="1" />
+          <End Role="Recepies" Type="RecepiesDbModel.Store.Recepies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Recepies">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecepiesDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RecepiesDbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="RecepiesDbModel.Comment" />
+          <EntitySet Name="Recepies" EntityType="RecepiesDbModel.Recepy" />
+          <EntitySet Name="Users" EntityType="RecepiesDbModel.User" />
+          <AssociationSet Name="FK_Comments_Recepies" Association="RecepiesDbModel.FK_Comments_Recepies">
+            <End Role="Recepies" EntitySet="Recepies" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="RecepiesDbModel.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recepies_Users" Association="RecepiesDbModel.FK_Recepies_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recepies" EntitySet="Recepies" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+            <PropertyRef Name="Text" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RecepieId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RecepieId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Recepy" Relationship="RecepiesDbModel.FK_Comments_Recepies" FromRole="Comments" ToRole="Recepies" />
+          <NavigationProperty Name="User" Relationship="RecepiesDbModel.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Recepy">
+          <Key>
+            <PropertyRef Name="RecepieId" />
+          </Key>
+          <Property Name="RecepieId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Products" Type="String" Nullable="false" MaxLength="450" Unicode="true" FixedLength="false" />
+          <Property Name="CookingSteps" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="RecepiesDbModel.FK_Comments_Recepies" FromRole="Recepies" ToRole="Comments" />
+          <NavigationProperty Name="User" Relationship="RecepiesDbModel.FK_Recepies_Users" FromRole="Recepies" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AuthenticationCode" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="true" />
+          <Property Name="AccessToken" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Comments" Relationship="RecepiesDbModel.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="Recepies" Relationship="RecepiesDbModel.FK_Recepies_Users" FromRole="Users" ToRole="Recepies" />
+        </EntityType>
+        <Association Name="FK_Comments_Recepies">
+          <End Role="Recepies" Type="RecepiesDbModel.Recepy" Multiplicity="1" />
+          <End Role="Comments" Type="RecepiesDbModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recepies">
+              <PropertyRef Name="RecepieId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="RecepieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="RecepiesDbModel.User" Multiplicity="1" />
+          <End Role="Comments" Type="RecepiesDbModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recepies_Users">
+          <End Role="Users" Type="RecepiesDbModel.User" Multiplicity="1" />
+          <End Role="Recepies" Type="RecepiesDbModel.Recepy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Recepies">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecepiesDbModelStoreContainer" CdmEntityContainer="RecepiesDbEntities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="RecepiesDbModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RecepieId" ColumnName="RecepieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recepies">
+            <EntityTypeMapping TypeName="RecepiesDbModel.Recepy">
+              <MappingFragment StoreEntitySet="Recepies">
+                <ScalarProperty Name="RecepieId" ColumnName="RecepieId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Products" ColumnName="Products" />
+                <ScalarProperty Name="CookingSteps" ColumnName="CookingSteps" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RecepiesDbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AuthenticationCode" ColumnName="AuthenticationCode" />
+                <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
