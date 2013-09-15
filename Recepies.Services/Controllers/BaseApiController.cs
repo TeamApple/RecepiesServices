@@ -30,7 +30,7 @@ namespace Recepies.Services.Controllers
             }
         }
 
-        protected User GetUserByAccessToken(string accessToken, TasksManagerDbContext context)
+        protected User GetUserByAccessToken(string accessToken, RecipeContext context)
         {
             var user = context.Users.FirstOrDefault(usr => usr.AccessToken == accessToken);
             if (user == null)
