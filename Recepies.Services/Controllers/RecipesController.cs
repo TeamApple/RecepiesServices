@@ -113,15 +113,6 @@ namespace Recepies.Services.Controllers
                 throw new ArgumentNullException("Invalid Recipe");
             }
         }
-
-        protected Recepy GetRecipeById(int id, RecipeContext context)
-        {
-            var recipe = context.Recepies.FirstOrDefault(rec => rec.RecepieId == id);
-            if (recipe == null)
-            {
-                throw new InvalidOperationException("Invalid recipe id");
-            }
-            return recipe;
-        }
+        
     }
 }

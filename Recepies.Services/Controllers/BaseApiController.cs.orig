@@ -30,7 +30,11 @@ namespace Recepies.Services.Controllers
             }
         }
 
+<<<<<<< HEAD
+        protected User GetUserByAccessToken(string accessToken, TasksManagerDbContext context)
+=======
         protected User GetUserByAccessToken(string accessToken, RecipeContext context)
+>>>>>>> e53b686fe98d9fa4650511c7ed9c0778425a75ac
         {
             var user = context.Users.FirstOrDefault(usr => usr.AccessToken == accessToken);
             if (user == null)
@@ -38,15 +42,6 @@ namespace Recepies.Services.Controllers
                 throw new InvalidOperationException("Invalid user credentials");
             }
             return user;
-        }
-        protected Recepy GetRecipeById(int id, RecipeContext context)
-        {
-            var recipe = context.Recepies.FirstOrDefault(rec => rec.RecepieId == id);
-            if (recipe == null)
-            {
-                throw new InvalidOperationException("Invalid recipe id");
-            }
-            return recipe;
         }
     }
 }

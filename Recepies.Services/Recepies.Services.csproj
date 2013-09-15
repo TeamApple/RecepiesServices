@@ -166,6 +166,7 @@
     <Compile Include="AuthenticationHeaders\HeaderValueProvider.cs" />
     <Compile Include="AuthenticationHeaders\HeaderValueProviderFactory.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -173,6 +174,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\CreatedComment.cs" />
     <Compile Include="Models\RecipeCreatedModel.cs" />
     <Compile Include="Models\LoginResponseModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
