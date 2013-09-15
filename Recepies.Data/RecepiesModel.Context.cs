@@ -13,10 +13,10 @@ namespace Recepies.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RecepiesDbEntities : DbContext
+    public partial class dbcc87f75bab1e4f11b506a23a00be151aEntities : DbContext
     {
-        public RecepiesDbEntities()
-            : base("name=RecepiesDbEntities")
+        public dbcc87f75bab1e4f11b506a23a00be151aEntities()
+            : base("name=dbcc87f75bab1e4f11b506a23a00be151aEntities")
         {
         }
     

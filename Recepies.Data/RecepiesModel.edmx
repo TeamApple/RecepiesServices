@@ -4,42 +4,29 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RecepiesDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="RecepiesDbModelStoreContainer">
-          <EntitySet Name="Comments" EntityType="RecepiesDbModel.Store.Comments" store:Type="Tables" store:Schema="dbo" store:Name="Comments">
-            <DefiningQuery>SELECT 
-      [Comments].[CommentId] AS [CommentId], 
-      [Comments].[Text] AS [Text], 
-      [Comments].[UserId] AS [UserId], 
-      [Comments].[RecepieId] AS [RecepieId]
-      FROM [dbo].[Comments] AS [Comments]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Recepies" EntityType="RecepiesDbModel.Store.Recepies" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="RecepiesDbModel.Store.Users" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Comments_Recepies" Association="RecepiesDbModel.Store.FK_Comments_Recepies">
+      <Schema Namespace="dbcc87f75bab1e4f11b506a23a00be151aModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="dbcc87f75bab1e4f11b506a23a00be151aModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Comments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recepies" EntityType="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Recepies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Comments_Recepies" Association="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.FK_Comments_Recepies">
             <End Role="Recepies" EntitySet="Recepies" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comments_Users" Association="RecepiesDbModel.Store.FK_Comments_Users">
+          <AssociationSet Name="FK_Comments_Users" Association="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.FK_Comments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recepies_Users" Association="RecepiesDbModel.Store.FK_Recepies_Users">
+          <AssociationSet Name="FK_Recepies_Users" Association="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.FK_Recepies_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Recepies" EntitySet="Recepies" />
           </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'RecepiesDb.dbo.Comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentId" />
-            <PropertyRef Name="Text" />
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RecepieId" />
           </Key>
-          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RecepieId" Type="int" Nullable="false" />
@@ -65,8 +52,8 @@
           <Property Name="AccessToken" Type="nchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Comments_Recepies">
-          <End Role="Recepies" Type="RecepiesDbModel.Store.Recepies" Multiplicity="1" />
-          <End Role="Comments" Type="RecepiesDbModel.Store.Comments" Multiplicity="*" />
+          <End Role="Recepies" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Recepies" Multiplicity="1" />
+          <End Role="Comments" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recepies">
               <PropertyRef Name="RecepieId" />
@@ -77,8 +64,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Users">
-          <End Role="Users" Type="RecepiesDbModel.Store.Users" Multiplicity="1" />
-          <End Role="Comments" Type="RecepiesDbModel.Store.Comments" Multiplicity="*" />
+          <End Role="Users" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Users" Multiplicity="1" />
+          <End Role="Comments" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserId" />
@@ -89,8 +76,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Recepies_Users">
-          <End Role="Users" Type="RecepiesDbModel.Store.Users" Multiplicity="1" />
-          <End Role="Recepies" Type="RecepiesDbModel.Store.Recepies" Multiplicity="*" />
+          <End Role="Users" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Users" Multiplicity="1" />
+          <End Role="Recepies" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Store.Recepies" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserId" />
@@ -104,20 +91,20 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RecepiesDbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="RecepiesDbEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="RecepiesDbModel.Comment" />
-          <EntitySet Name="Recepies" EntityType="RecepiesDbModel.Recepy" />
-          <EntitySet Name="Users" EntityType="RecepiesDbModel.User" />
-          <AssociationSet Name="FK_Comments_Recepies" Association="RecepiesDbModel.FK_Comments_Recepies">
+      <Schema Namespace="dbcc87f75bab1e4f11b506a23a00be151aModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbcc87f75bab1e4f11b506a23a00be151aEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="dbcc87f75bab1e4f11b506a23a00be151aModel.Comment" />
+          <EntitySet Name="Recepies" EntityType="dbcc87f75bab1e4f11b506a23a00be151aModel.Recepy" />
+          <EntitySet Name="Users" EntityType="dbcc87f75bab1e4f11b506a23a00be151aModel.User" />
+          <AssociationSet Name="FK_Comments_Recepies" Association="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Comments_Recepies">
             <End Role="Recepies" EntitySet="Recepies" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comments_Users" Association="RecepiesDbModel.FK_Comments_Users">
+          <AssociationSet Name="FK_Comments_Users" Association="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Comments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Recepies_Users" Association="RecepiesDbModel.FK_Recepies_Users">
+          <AssociationSet Name="FK_Recepies_Users" Association="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Recepies_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Recepies" EntitySet="Recepies" />
           </AssociationSet>
@@ -125,16 +112,13 @@
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="CommentId" />
-            <PropertyRef Name="Text" />
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RecepieId" />
           </Key>
-          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <Property Name="CommentId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="RecepieId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Recepy" Relationship="RecepiesDbModel.FK_Comments_Recepies" FromRole="Comments" ToRole="Recepies" />
-          <NavigationProperty Name="User" Relationship="RecepiesDbModel.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="Recepy" Relationship="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Comments_Recepies" FromRole="Comments" ToRole="Recepies" />
+          <NavigationProperty Name="User" Relationship="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
         </EntityType>
         <EntityType Name="Recepy">
           <Key>
@@ -146,8 +130,8 @@
           <Property Name="CookingSteps" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Comments" Relationship="RecepiesDbModel.FK_Comments_Recepies" FromRole="Recepies" ToRole="Comments" />
-          <NavigationProperty Name="User" Relationship="RecepiesDbModel.FK_Recepies_Users" FromRole="Recepies" ToRole="Users" />
+          <NavigationProperty Name="Comments" Relationship="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Comments_Recepies" FromRole="Recepies" ToRole="Comments" />
+          <NavigationProperty Name="User" Relationship="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Recepies_Users" FromRole="Recepies" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -157,12 +141,12 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="AuthenticationCode" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="true" />
           <Property Name="AccessToken" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Comments" Relationship="RecepiesDbModel.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
-          <NavigationProperty Name="Recepies" Relationship="RecepiesDbModel.FK_Recepies_Users" FromRole="Users" ToRole="Recepies" />
+          <NavigationProperty Name="Comments" Relationship="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="Recepies" Relationship="dbcc87f75bab1e4f11b506a23a00be151aModel.FK_Recepies_Users" FromRole="Users" ToRole="Recepies" />
         </EntityType>
         <Association Name="FK_Comments_Recepies">
-          <End Role="Recepies" Type="RecepiesDbModel.Recepy" Multiplicity="1" />
-          <End Role="Comments" Type="RecepiesDbModel.Comment" Multiplicity="*" />
+          <End Role="Recepies" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Recepy" Multiplicity="1" />
+          <End Role="Comments" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recepies">
               <PropertyRef Name="RecepieId" />
@@ -173,8 +157,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Users">
-          <End Role="Users" Type="RecepiesDbModel.User" Multiplicity="1" />
-          <End Role="Comments" Type="RecepiesDbModel.Comment" Multiplicity="*" />
+          <End Role="Users" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.User" Multiplicity="1" />
+          <End Role="Comments" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserId" />
@@ -185,8 +169,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Recepies_Users">
-          <End Role="Users" Type="RecepiesDbModel.User" Multiplicity="1" />
-          <End Role="Recepies" Type="RecepiesDbModel.Recepy" Multiplicity="*" />
+          <End Role="Users" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.User" Multiplicity="1" />
+          <End Role="Recepies" Type="dbcc87f75bab1e4f11b506a23a00be151aModel.Recepy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserId" />
@@ -201,9 +185,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RecepiesDbModelStoreContainer" CdmEntityContainer="RecepiesDbEntities">
+        <EntityContainerMapping StorageEntityContainer="dbcc87f75bab1e4f11b506a23a00be151aModelStoreContainer" CdmEntityContainer="dbcc87f75bab1e4f11b506a23a00be151aEntities">
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="RecepiesDbModel.Comment">
+            <EntityTypeMapping TypeName="dbcc87f75bab1e4f11b506a23a00be151aModel.Comment">
               <MappingFragment StoreEntitySet="Comments">
                 <ScalarProperty Name="CommentId" ColumnName="CommentId" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
@@ -213,7 +197,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Recepies">
-            <EntityTypeMapping TypeName="RecepiesDbModel.Recepy">
+            <EntityTypeMapping TypeName="dbcc87f75bab1e4f11b506a23a00be151aModel.Recepy">
               <MappingFragment StoreEntitySet="Recepies">
                 <ScalarProperty Name="RecepieId" ColumnName="RecepieId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -225,7 +209,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="RecepiesDbModel.User">
+            <EntityTypeMapping TypeName="dbcc87f75bab1e4f11b506a23a00be151aModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
