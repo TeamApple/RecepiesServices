@@ -86,7 +86,7 @@ namespace Recepies.Services.Controllers
 
         [HttpGet]
         [ActionName("all")]
-        public IQueryable<Recepy> GetAll(
+        public IQueryable<RecipeModel> GetAll(
             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
             string accessToken)
         {
@@ -97,7 +97,14 @@ namespace Recepies.Services.Controllers
 
                 var recipeModels = user.Recepies
                     .AsQueryable()
-                    .OrderByDescending(rec => rec.Name);
+                    .OrderByDescending(rec => rec.Name)
+                    .Select(rec => new RecipeModel() { 
+                        Id = rec.RecepieId,
+                        Name = rec.Name,
+                        CookingSteps = rec.CookingSteps,
+                        Products = rec.Products,
+                        ImagePath = rec.ImagePath
+                    });
 
                 return recipeModels;
             });
