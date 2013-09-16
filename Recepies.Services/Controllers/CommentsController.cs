@@ -70,12 +70,18 @@ namespace Recepies.Services.Controllers
 
         [HttpGet]
         [ActionName("allbyrecipe")]
-        public CommentModel GetSingleList(int id,
+        public IQueryable<CommentModel> GetSingleList(int id,
             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
             string accessToken)
         {
-            return this.GetAll(accessToken)
-                    .FirstOrDefault(rec => rec.RecepieId == id);
+            return this.GetAll(accessToken)                    
+                    .Where(rec => rec.RecepieId == id)                    
+                    .Select(rec => new CommentModel()
+                    {
+                        Id = rec.Id,
+                        Text = rec.Text,
+                        RecepieId = rec.RecepieId
+                    });
         }
 
 

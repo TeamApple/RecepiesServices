@@ -1,0 +1,6 @@
+http://recepiesservices.apphb.com/api/comment/
+
+GetAll
+
+X-accessToken: 6LydqxqYXeKYHlvUyqafObBgRZZtTjDxPchpbAzvnxPKGFpYTj
+
