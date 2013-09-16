@@ -15,7 +15,7 @@ namespace Recepies.Services.Controllers
     {
         [HttpPost]
         [ActionName("new")]
-        public HttpResponseMessage CreateComment(CommentModel model, int recipeId,
+        public HttpResponseMessage CreateComment(CommentModel model, 
             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
             string accessToken)
         {
@@ -23,7 +23,7 @@ namespace Recepies.Services.Controllers
             {
                 var context = new RecipeContext();
                 var meUser = this.GetUserByAccessToken(accessToken, context);
-                var recipe = this.GetRecipeById(recipeId,context);
+                var recipe = this.GetRecipeById(model.RecepieId,context);
 
 
                 this.ValidateComment(model);
