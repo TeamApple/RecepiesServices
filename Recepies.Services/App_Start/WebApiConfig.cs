@@ -17,8 +17,8 @@ namespace Recepies.Services
 
             config.Routes.MapHttpRoute(
                 name: "CommentsApi",
-                routeTemplate: "api/comment/{action}",
-                defaults: new { controller = "comments" }
+                routeTemplate: "api/comment/{id}/{action}",
+                defaults: new { controller = "comments", id = RouteParameter.Optional, action = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
