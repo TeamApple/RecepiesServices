@@ -12,7 +12,7 @@ namespace Recepies.Services.Models
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
-        [DataMember(Name = "owner")]
-        public string Owner { get; set; }
+        [DataMember(Name = "ownerId")]
+        public int OwnerId { get; set; }
     }
 }

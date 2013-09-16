@@ -39,7 +39,8 @@ namespace Recepies.Services.Controllers
 
                 var responseModel = new CreatedComment()
                 {
-                    Id = commentEntity.CommentId
+                    Id = commentEntity.CommentId,
+                    OwnerId = commentEntity.UserId
                 };
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, responseModel);
                 return response;
