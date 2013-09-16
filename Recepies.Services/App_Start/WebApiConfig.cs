@@ -11,14 +11,14 @@ namespace Recepies.Services
         {
             config.Routes.MapHttpRoute(
                 name: "RecipeApi",
-                routeTemplate: "api/recipe/{id}/{action}",
-                defaults: new { controller = "recipes", id = RouteParameter.Optional, action = RouteParameter.Optional }
+                routeTemplate: "api/recipe/{action}/{id}",
+                defaults: new { controller = "recipes", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "CommentsApi",
-                routeTemplate: "api/comment/{action}",
-                defaults: new { controller = "comments" }
+                routeTemplate: "api/comment/{id}/{action}",
+                defaults: new { controller = "comments", id = RouteParameter.Optional, action = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(

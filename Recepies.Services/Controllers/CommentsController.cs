@@ -47,6 +47,44 @@ namespace Recepies.Services.Controllers
             });
         }
 
+        [HttpGet]
+        [ActionName("all")]
+        public IQueryable<CommentModel> GetAll(
+            [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
+            string accessToken)
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var context = new RecipeContext();
+                var user = this.GetUserByAccessToken(accessToken, context);
+
+                var commentsList = context.Comments.AsQueryable().OrderBy(cm => cm.Text).Select(cm => new CommentModel()
+                {
+                    Id = cm.CommentId,
+                    Text = cm.Text,
+                    RecepieId = cm.RecepieId
+                });
+                return commentsList;
+            });
+        }
+
+        [HttpGet]
+        [ActionName("allbyrecipe")]
+        public IQueryable<CommentModel> GetSingleList(int id,
+            [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
+            string accessToken)
+        {
+            return this.GetAll(accessToken)                    
+                    .Where(rec => rec.RecepieId == id)                    
+                    .Select(rec => new CommentModel()
+                    {
+                        Id = rec.Id,
+                        Text = rec.Text,
+                        RecepieId = rec.RecepieId
+                    });
+        }
+
+
         private void ValidateComment(CommentModel model)
         {
             if (model == null || string.IsNullOrEmpty(model.Text))
