@@ -73,7 +73,11 @@ namespace Recepies.Services.Controllers
                 var user = context.Users.FirstOrDefault(u => u.UserName == username);
                 if (user == null)
                 {
-                    throw new InvalidOperationException("Invalid username or password");
+                    throw new InvalidOperationException("Invalid username");
+                }
+                if (user.AuthenticationCode != model.AuthCode)
+                {
+                    throw new InvalidOperationException("Invalid password");
                 }
                 if (user.AccessToken == null)
                 {
